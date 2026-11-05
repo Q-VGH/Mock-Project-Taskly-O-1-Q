@@ -1,0 +1,270 @@
+/* =============================================
+   FILE: style.css
+   MÔ TẢ: Toàn bộ CSS cho ứng dụng Todo List
+   TÁC GIẢ: Dev 1
+   ============================================= */
+
+/* ===== RESET & CƠ BẢN ===== */
+/* Reset: Xóa margin/padding mặc định của trình duyệt */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* box-sizing: border-box → padding và border TÍNH VÀO width/height
+       Ví dụ: width: 100px + padding: 10px = vẫn là 100px (không phải 120px) */
+}
+
+/* Cài đặt font chữ và màu nền cho toàn trang */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5; /* Nền xám nhạt */
+  color: #333333; /* Chữ đen nhạt */
+  line-height: 1.6; /* Chiều cao dòng 1.6 lần font size */
+  min-height: 100vh; /* Tối thiểu chiều cao = toàn màn hình */
+  display: flex; /* Dùng Flexbox để căn giữa */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: flex-start; /* Căn theo chiều dọc từ trên xuống */
+  padding: 40px 20px; /* Khoảng cách với mép trang */
+}
+
+/* ===== CONTAINER CHÍNH ===== */
+/* Bọc toàn bộ app trong 1 khung trắng, căn giữa */
+.container {
+  background-color: #ffffff; /* Nền trắng */
+  border-radius: 16px; /* Bo góc */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ */
+  padding: 32px; /* Khoảng cách bên trong */
+  width: 100%; /* Rộng 100% */
+  max-width: 600px; /* Nhưng tối đa 600px */
+}
+
+/* ===== HEADER ===== */
+.app-header {
+  text-align: center; /* Căn giữa text */
+  margin-bottom: 24px; /* Khoảng cách dưới */
+}
+
+.app-header h1 {
+  font-size: 28px;
+  color: #1a1a2e;
+}
+
+.app-header .subtitle {
+  font-size: 14px;
+  color: #888888;
+  margin-top: 4px;
+}
+
+/* ===== FORM THÊM TASK ===== */
+/* Dùng Flexbox để ô input và nút nằm NGANG hàng */
+.todo-form {
+  display: flex; /* Flexbox: các con nằm ngang */
+  gap: 12px; /* Khoảng cách giữa input và button */
+  margin-bottom: 24px;
+}
+
+/* Ô input nhập task */
+.todo-input {
+  flex: 1; /* Chiếm toàn bộ không gian còn lại */
+  padding: 12px 16px; /* Khoảng cách bên trong */
+  border: 2px solid #e0e0e0; /* Viền xám */
+  border-radius: 8px; /* Bo góc */
+  font-size: 16px;
+  outline: none; /* Bỏ viền xanh mặc định khi focus */
+  transition: border-color 0.3s; /* Hiệu ứng đổi màu viền mượt */
+}
+
+/* Khi click vào ô input → viền đổi màu xanh */
+.todo-input:focus {
+  border-color: #4caf50;
+}
+
+/* ===== NÚT BẤM ===== */
+/* Class chung cho tất cả nút */
+.btn {
+  padding: 12px 20px;
+  border: none; /* Bỏ viền mặc định */
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer; /* Con trỏ hình bàn tay khi hover */
+  transition:
+    background-color 0.3s,
+    transform 0.1s; /* Hiệu ứng mượt */
+  font-weight: 600;
+}
+
+/* Nút Thêm: màu xanh lá */
+.btn-add {
+  background-color: #4caf50;
+  color: white;
+  white-space: nowrap; /* Không xuống dòng */
+}
+
+.btn-add:hover {
+  background-color: #45a049; /* Đậm hơn 1 chút khi hover */
+}
+
+.btn-add:active {
+  transform: scale(0.96); /* Thu nhỏ nhẹ khi bấm */
+}
+
+/* ===== THÔNG BÁO LỖI ===== */
+.error-message {
+  background-color: #ffebee; /* Nền đỏ nhạt */
+  color: #c62828; /* Chữ đỏ đậm */
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ===== DANH SÁCH TASK ===== */
+.todo-list {
+  list-style: none; /* Bỏ dấu chấm tròn mặc định của <ul> */
+}
+
+/* Mỗi task (thẻ <li>) */
+.todo-item {
+  display: flex; /* Flexbox: checkbox, text, nút nằm ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 12px; /* Khoảng cách giữa các phần tử */
+  padding: 14px 16px;
+  background-color: #fafafa; /* Nền xám rất nhạt */
+  border: 1px solid #eee; /* Viền nhạt */
+  border-radius: 8px;
+  margin-bottom: 8px; /* Khoảng cách giữa các task */
+  transition: background-color 0.2s;
+}
+
+/* Hover vào task → đổi màu nền nhẹ */
+.todo-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Checkbox toggle trạng thái */
+.todo-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #4caf50; /* Màu checkbox khi checked */
+}
+
+/* Nội dung text của task */
+.todo-text {
+  flex: 1; /* Chiếm toàn bộ không gian còn lại */
+  font-size: 16px;
+  word-break: break-word; /* Xuống dòng nếu text quá dài */
+}
+
+/* Task đã hoàn thành: gạch ngang + màu nhạt */
+.todo-item.completed .todo-text {
+  text-decoration: line-through; /* Gạch ngang */
+  color: #999999; /* Chữ xám */
+}
+
+.todo-item.completed {
+  background-color: #f1f8e9; /* Nền xanh lá nhạt */
+  opacity: 0.8;
+}
+
+/* Nhóm các nút hành động (Sửa, Xóa) */
+.todo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Nút Sửa */
+.btn-edit {
+  background-color: #2196f3;
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.btn-edit:hover {
+  background-color: #1e88e5;
+}
+
+/* Nút Xóa */
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.btn-delete:hover {
+  background-color: #e53935;
+}
+
+/* Nút Lưu (khi đang sửa task) */
+.btn-save {
+  background-color: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* Nút Hủy (khi đang sửa task) */
+.btn-cancel {
+  background-color: #9e9e9e;
+  color: white;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* Ô input khi đang sửa task */
+.edit-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 2px solid #2196f3;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+/* ===== THÔNG BÁO DANH SÁCH RỖNG ===== */
+.empty-message {
+  text-align: center;
+  padding: 32px;
+  color: #999999;
+  font-size: 16px;
+}
+
+/* ===== FOOTER THỐNG KÊ ===== */
+.app-footer {
+  display: flex;
+  justify-content: space-between; /* Các phần tử cách đều nhau */
+  padding-top: 16px;
+  margin-top: 16px;
+  border-top: 1px solid #eee; /* Đường kẻ ngăn cách */
+  font-size: 14px;
+  color: #666666;
+}
+
+/* ===== RESPONSIVE: Điện thoại ===== */
+/* Khi màn hình nhỏ hơn 480px (điện thoại) */
+@media (max-width: 480px) {
+  body {
+    padding: 16px 8px;
+  }
+
+  .container {
+    padding: 20px 16px;
+  }
+
+  .todo-form {
+    flex-direction: column; /* Ô input và nút xếp DỌC */
+  }
+
+  .btn-add {
+    width: 100%; /* Nút rộng 100% */
+  }
+
+  .app-footer {
+    flex-direction: column; /* Thống kê xếp dọc */
+    gap: 4px;
+    text-align: center;
+  }
+}

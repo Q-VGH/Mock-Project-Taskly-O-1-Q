@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- Khai báo đây là tài liệu HTML5 -->
+<html lang="vi">
+  <!-- lang="vi" để trình duyệt biết trang web dùng tiếng Việt -->
+
+  <head>
+    <!-- Phần <head> chứa thông tin MÔ TẢ trang (không hiển thị trên màn hình) -->
+
+    <!-- Thiết lập bộ ký tự UTF-8 để hiển thị tiếng Việt đúng -->
+    <meta charset="UTF-8" />
+
+    <!-- Giúp trang web hiển thị tốt trên điện thoại (responsive) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tiêu đề hiển thị trên tab trình duyệt -->
+    <title>📝 My Todo List</title>
+
+    <!-- Liên kết đến file CSS để trang trí giao diện -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- Phần <body> chứa NỘI DUNG hiển thị trên màn hình -->
+
+    <!-- ===== CONTAINER CHÍNH ===== -->
+    <!-- Bọc toàn bộ nội dung trong 1 div để dễ căn giữa bằng CSS -->
+    <div class="container">
+      <!-- ===== HEADER: Tiêu đề ứng dụng ===== -->
+      <header class="app-header">
+        <h1>📝 My Todo List</h1>
+        <p class="subtitle">Quản lý công việc hiệu quả</p>
+      </header>
+
+      <!-- ===== FORM: Ô nhập task mới ===== -->
+      <!-- 
+            Lưu ý: Không dùng action="" vì mình sẽ dùng JS để gửi dữ liệu 
+            thay vì để HTML tự gửi form (sẽ reload trang)
+        -->
+      <form id="todo-form" class="todo-form">
+        <!-- Ô nhập nội dung task -->
+        <input
+          type="text"
+          id="todo-input"
+          class="todo-input"
+          placeholder="Nhập task mới..."
+          maxlength="255"
+          autofocus
+        />
+        <!-- 
+                id="todo-input"   → Để JS tìm được phần tử này
+                placeholder       → Text gợi ý khi ô input trống
+                maxlength="255"   → Giới hạn 255 ký tự (khớp với VARCHAR(255) trong DB)
+                autofocus         → Tự động focus vào ô input khi mở trang
+            -->
+
+        <!-- Nút thêm task -->
+        <button type="submit" id="add-btn" class="btn btn-add">➕ Thêm</button>
+        <!-- type="submit" → Khi bấm nút hoặc nhấn Enter sẽ trigger sự kiện submit -->
+      </form>
+
+      <!-- ===== THÔNG BÁO LỖI ===== -->
+      <!-- Ẩn mặc định, JS sẽ hiện khi cần -->
+      <div id="error-message" class="error-message" style="display: none">
+        <!-- Nội dung lỗi sẽ được JS điền vào -->
+      </div>
+
+      <!-- ===== DANH SÁCH TASK ===== -->
+      <!-- 
+            <ul> = Unordered List (danh sách không đánh số)
+            JS sẽ thêm các <li> vào bên trong <ul> này
+        -->
+      <ul id="todo-list" class="todo-list">
+        <!-- JS sẽ render danh sách task ở đây -->
+        <!-- Mỗi task sẽ là 1 thẻ <li> -->
+      </ul>
+
+      <!-- ===== THÔNG BÁO KHI DANH SÁCH RỖNG ===== -->
+      <div id="empty-message" class="empty-message">
+        <p>📭 Chưa có task nào. Hãy thêm task mới!</p>
+      </div>
+
+      <!-- ===== FOOTER: Thống kê ===== -->
+      <footer class="app-footer">
+        <span>Tổng: <strong id="total-count">0</strong> task</span>
+        <span>Hoàn thành: <strong id="completed-count">0</strong></span>
+        <span>Còn lại: <strong id="pending-count">0</strong></span>
+      </footer>
+    </div>
+    <!-- Kết thúc container -->
+
+    <!-- ===== LIÊN KẾT FILE JAVASCRIPT ===== -->
+
+    <!-- Đặt script ở CUỐI body (trước thẻ body) để:
+        1. HTML load xong rồi mới chạy JS
+        2. JS có thể tìm thấy các phần tử HTML -->
+    <script src="js/app.js"></script>
+  </body>
+</html>
